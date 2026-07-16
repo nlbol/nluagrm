@@ -1,0 +1,105 @@
+<header id="header">
+	<a href="/" class="logo">Núcleo Linux UAGRM</a>
+	<nav>
+		<a href="/eventos">Eventos</a>
+		<a href="/proyectos">Proyectos</a>
+		<a href="/comunidad">Comunidad</a>
+	</nav>
+</header>
+
+<script>
+  const header = document.getElementById('header');
+  let lastScroll = 0;
+  const THRESHOLD = 80;
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > THRESHOLD && y > lastScroll) {
+      header?.classList.add('hidden');
+    } else {
+      header?.classList.remove('hidden');
+    }
+    lastScroll = y;
+  }, { passive: true });
+</script>
+
+<style>
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 40px;
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		transform: translateY(0);
+		will-change: transform;
+		transition: transform 0.35s ease;
+	}
+
+	header::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: rgba(15, 12, 41, 0.75);
+		animation: glassShift 8s ease-in-out infinite alternate;
+	}
+
+	@keyframes glassShift {
+		0% { background: rgba(15, 12, 41, 0.7); }
+		25% { background: rgba(25, 18, 50, 0.72); }
+		50% { background: rgba(20, 14, 55, 0.75); }
+		75% { background: rgba(30, 20, 60, 0.72); }
+		100% { background: rgba(15, 12, 41, 0.7); }
+	}
+
+	header.hidden {
+		transform: translateY(-100%);
+	}
+
+	.logo {
+		color: white;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 1.1rem;
+	}
+
+	nav {
+		display: flex;
+		gap: 28px;
+	}
+
+	nav a {
+		position: relative;
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		font-size: 0.9rem;
+		padding-bottom: 4px;
+		transition: color 0.2s;
+	}
+	nav a::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 100%;
+		height: 2px;
+		background: white;
+		border-radius: 2px;
+		transform: translateX(-50%) scaleX(0);
+		transition: transform 0.25s ease;
+	}
+	nav a:hover {
+		color: white;
+	}
+	nav a:hover::after {
+		transform: translateX(-50%) scaleX(1);
+	}
+</style>
