@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Ana López",
+    "role": "Arquitecta de Infraestructura",
+    "bio": "Encargada de la administración de servidores, mirrors y despliegue de servicios.",
+    "github": "https://github.com/analopez"
+  },
+  {
+    "name": "Carlos Méndez",
+    "role": "Maintainer de Proyectos",
+    "bio": "Mantiene los repositorios principales y coordina las contribuciones de la comunidad.",
+    "github": "https://github.com/carlosmendez"
+  },
+  {
+    "name": "María Ríos",
+    "role": "Líder de Comunidad",
+    "bio": "Coordina eventos, reuniones y la comunicación interna y externa del grupo.",
+    "github": "https://github.com/mariarios"
+  },
+  {
+    "name": "Dr. Hugo Vargas",
+    "role": "Asesor Académico",
+    "bio": "Docente de la carrera de Ingeniería de Sistemas. Asesora proyectos de investigación.",
+    "github": "#"
+  }
+]

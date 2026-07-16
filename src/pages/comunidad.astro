@@ -13,92 +13,67 @@ import Layout from "../layouts/Layout.astro";
   <section class="section section-alt" id="proyectos">
     <div class="content">
       <h2>Proyectos Activos</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Linux Mirrors</h3>
-          <p>Espejos de distribuciones Linux para la comunidad universitaria y el país.</p>
-          <span class="status">Producción</span>
-        </div>
-        <div class="card">
-          <h3>Auth Proxy</h3>
-          <p>Sistema de autenticación y proxy para servicios internos de la universidad.</p>
-          <span class="status">Desarrollo</span>
-        </div>
-        <div class="card">
-          <h3>Wiki Comunitaria</h3>
-          <p>Base de conocimiento colaborativa con guías, tutoriales y documentación técnica.</p>
-          <span class="status">Beta</span>
-        </div>
-        <div class="card">
-          <h3>Bot de Discord</h3>
-          <p>Asistente automatizado para la gestión del servidor de la comunidad.</p>
-          <span class="status">Mantenimiento</span>
-        </div>
-      </div>
+      <div class="grid" id="projects-grid"></div>
     </div>
   </section>
 
   <section class="section" id="contribuidores">
     <div class="content">
       <h2>Contribuidores Principales</h2>
-      <div class="grid">
-        <div class="profile">
-          <div class="avatar"></div>
-          <h3>Nombre del Arquitecto</h3>
-          <p class="role">Arquitecto de Infraestructura</p>
-          <p class="bio">Descripción breve del rol y contribuciones dentro de la comunidad.</p>
-        </div>
-        <div class="profile">
-          <div class="avatar"></div>
-          <h3>Nombre del Maintainer</h3>
-          <p class="role">Maintainer de Proyectos</p>
-          <p class="bio">Descripción breve del rol y contribuciones dentro de la comunidad.</p>
-        </div>
-        <div class="profile">
-          <div class="avatar"></div>
-          <h3>Nombre del Líder</h3>
-          <p class="role">Líder de Comunidad</p>
-          <p class="bio">Descripción breve del rol y contribuciones dentro de la comunidad.</p>
-        </div>
-        <div class="profile">
-          <div class="avatar"></div>
-          <h3>Nombre del Docente</h3>
-          <p class="role">Asesor Académico</p>
-          <p class="bio">Descripción breve del rol y contribuciones dentro de la comunidad.</p>
-        </div>
-      </div>
+      <div class="grid" id="members-grid"></div>
     </div>
   </section>
 
   <section class="section section-alt" id="unirse">
     <div class="content">
       <h2>Sumate al Equipo</h2>
-      <form class="join-form">
-        <div class="form-row">
-          <input type="text" placeholder="Nombre completo" required />
-          <input type="email" placeholder="Correo universitario" required />
-        </div>
-        <div class="form-row">
-          <input type="text" placeholder="Carrera" />
-          <input type="text" placeholder="Semestre" />
-        </div>
-        <div class="form-row">
-          <select>
-            <option>Área de interés</option>
-            <option>Difusión</option>
-            <option>Instalación</option>
-            <option>Logística</option>
-            <option>Desarrollo</option>
-            <option>Investigación</option>
-            <option>Infraestructura</option>
-          </select>
-        </div>
-        <textarea placeholder="Contanos por qué querés sumarte y qué conocimientos tenés..." rows="4"></textarea>
-        <button type="submit">Enviar solicitud</button>
-      </form>
+      <p class="form-intro">Escribinos a <strong>nucleolinux@uagrm.edu.bo</strong> o unite a nuestro <a href="#">Discord</a> para coordinar tu incorporación.</p>
     </div>
   </section>
 </Layout>
+
+<script>
+  async function loadContent() {
+    try {
+      const [projects, members] = await Promise.all([
+        fetch("/content/projects.json").then((r) => r.json()),
+        fetch("/content/members.json").then((r) => r.json()),
+      ]);
+
+      const pGrid = document.getElementById("projects-grid");
+      pGrid.innerHTML = projects
+        .map(
+          (p) => `
+        <div class="card">
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+          ${p.repo ? `<a href="${p.repo}" class="repo-link" target="_blank">Repositorio →</a>` : ""}
+          <span class="status">${p.status}</span>
+        </div>`,
+        )
+        .join("");
+
+      const mGrid = document.getElementById("members-grid");
+      mGrid.innerHTML = members
+        .map(
+          (m) => `
+        <div class="profile">
+          <div class="avatar">${m.name.charAt(0)}</div>
+          <h3>${m.name}</h3>
+          <p class="role">${m.role}</p>
+          <p class="bio">${m.bio}</p>
+          ${m.github && m.github !== "#" ? `<a href="${m.github}" class="github-link" target="_blank">GitHub</a>` : ""}
+        </div>`,
+        )
+        .join("");
+    } catch {
+      document.getElementById("projects-grid").innerHTML =
+        '<p class="error">Error al cargar los datos.</p>';
+    }
+  }
+
+  loadContent();
+</script>
 
 <style>
   .section {
@@ -133,6 +108,14 @@ import Layout from "../layouts/Layout.astro";
     font-size: 1.05rem;
   }
 
+  .form-intro {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -164,6 +147,13 @@ import Layout from "../layouts/Layout.astro";
     margin-bottom: 0.75rem;
   }
 
+  .repo-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
   .status {
     display: inline-block;
     font-size: 0.75rem;
@@ -192,7 +182,13 @@ import Layout from "../layouts/Layout.astro";
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: var(--border);
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto 1rem;
   }
 
@@ -211,59 +207,17 @@ import Layout from "../layouts/Layout.astro";
   .bio {
     font-size: 0.85rem;
     color: var(--text-muted);
+    margin-bottom: 0.75rem;
   }
 
-  .join-form {
-    max-width: 600px;
-    margin: 2rem auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .join-form input,
-  .join-form select,
-  .join-form textarea {
-    width: 100%;
-    padding: 0.7rem 0.85rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 0.9rem;
-  }
-
-  .join-form textarea {
-    resize: vertical;
-    font-family: inherit;
-  }
-
-  .join-form button {
-    padding: 0.75rem 2rem;
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    border-radius: 6px;
+  .github-link {
+    font-size: 0.85rem;
     font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    align-self: flex-end;
-    transition: opacity 0.2s;
   }
 
-  .join-form button:hover {
-    opacity: 0.9;
-  }
-
-  @media (max-width: 600px) {
-    .form-row {
-      grid-template-columns: 1fr;
-    }
+  .error {
+    color: var(--text-muted);
+    grid-column: 1 / -1;
+    text-align: center;
   }
 </style>

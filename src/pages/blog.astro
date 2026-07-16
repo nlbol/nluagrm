@@ -12,43 +12,18 @@ import Layout from "../layouts/Layout.astro";
 
   <section class="section section-alt" id="filtros">
     <div class="content">
-      <div class="filters">
-        <span class="filter active">Todos</span>
-        <span class="filter">Tutoriales</span>
-        <span class="filter">Eventos</span>
-        <span class="filter">Opinión</span>
-        <span class="filter">Investigación</span>
+      <div class="filters" id="filters">
+        <span class="filter active" data-tag="all">Todos</span>
       </div>
     </div>
   </section>
 
   <section class="section" id="articulos">
     <div class="content">
-      <div class="feed">
-        <article class="post">
-          <span class="tag">Tutorial</span>
-          <h3>Título del artículo</h3>
-          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
-          <span class="meta">Por Autor — 16 Jul 2026</span>
-        </article>
-        <article class="post">
-          <span class="tag">Evento</span>
-          <h3>Título del artículo</h3>
-          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
-          <span class="meta">Por Autor — 16 Jul 2026</span>
-        </article>
-        <article class="post">
-          <span class="tag">Opinión</span>
-          <h3>Título del artículo</h3>
-          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
-          <span class="meta">Por Autor — 16 Jul 2026</span>
-        </article>
-        <article class="post">
-          <span class="tag">Investigación</span>
-          <h3>Título del artículo</h3>
-          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
-          <span class="meta">Por Autor — 16 Jul 2026</span>
-        </article>
+      <div class="feed" id="feed"></div>
+      <div class="post-view" id="post-view" style="display:none">
+        <button class="back-btn" id="back-btn">← Volver al listado</button>
+        <div id="post-content"></div>
       </div>
     </div>
   </section>
@@ -64,6 +39,98 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 </Layout>
+
+<script>
+  let posts = [];
+  let currentTag = "all";
+
+  function formatDate(iso) {
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("es-ES", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
+
+  function getTagLabel(tags) {
+    return tags?.[0] || "General";
+  }
+
+  function renderFeed() {
+    const feed = document.getElementById("feed");
+    const filtered = currentTag === "all" ? posts : posts.filter((p) => p.tags?.includes(currentTag));
+    feed.innerHTML = filtered
+      .map(
+        (p) => `
+      <article class="post" data-slug="${p.slug}">
+        <span class="tag">${getTagLabel(p.tags)}</span>
+        <h3>${p.title}</h3>
+        <p class="excerpt">${p.excerpt}</p>
+        <span class="meta">Por ${p.author} — ${formatDate(p.date)}</span>
+      </article>`,
+      )
+      .join("");
+  }
+
+  async function openPost(slug) {
+    const feed = document.getElementById("feed");
+    const view = document.getElementById("post-view");
+    const content = document.getElementById("post-content");
+    feed.style.display = "none";
+    view.style.display = "block";
+    content.innerHTML = "<p class='loading'>Cargando...</p>";
+    try {
+      const res = await fetch(`/content/posts/${slug}.md`);
+      const md = await res.text();
+      content.innerHTML = marked.parse(md);
+      content.querySelectorAll("pre code").forEach((b) => {
+        b.style.background = "var(--bg-alt)";
+        b.style.padding = "0.2rem 0.4rem";
+        b.style.borderRadius = "4px";
+      });
+    } catch {
+      content.innerHTML = "<p>Error al cargar el artículo.</p>";
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    const post = e.target.closest(".post");
+    if (post) {
+      openPost(post.dataset.slug);
+    }
+  });
+
+  document.getElementById("back-btn")?.addEventListener("click", () => {
+    document.getElementById("feed").style.display = "";
+    document.getElementById("post-view").style.display = "none";
+  });
+
+  document.getElementById("filters")?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".filter");
+    if (!btn) return;
+    document.querySelectorAll(".filter").forEach((f) => f.classList.remove("active"));
+    btn.classList.add("active");
+    currentTag = btn.dataset.tag;
+    renderFeed();
+  });
+
+  fetch("/content/posts/index.json")
+    .then((r) => r.json())
+    .then((data) => {
+      posts = data;
+      const tags = [...new Set(data.flatMap((p) => p.tags || []))];
+      const filtersEl = document.getElementById("filters");
+      tags.forEach((t) => {
+        const span = document.createElement("span");
+        span.className = "filter";
+        span.dataset.tag = t;
+        span.textContent = t.charAt(0).toUpperCase() + t.slice(1);
+        filtersEl.appendChild(span);
+      });
+      renderFeed();
+    });
+</script>
 
 <style>
   .section {
@@ -127,6 +194,7 @@ import Layout from "../layouts/Layout.astro";
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 1.5rem;
+    cursor: pointer;
     transition: box-shadow 0.2s;
   }
 
@@ -157,6 +225,75 @@ import Layout from "../layouts/Layout.astro";
 
   .meta {
     font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .back-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    transition: all 0.2s;
+  }
+
+  .back-btn:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+  }
+
+  .post-view h1,
+  .post-view h2,
+  .post-view h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .post-view p {
+    margin-bottom: 1em;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .post-view pre {
+    background: var(--bg-alt);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1em 0;
+  }
+
+  .post-view code {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.9em;
+  }
+
+  .post-view ul,
+  .post-view ol {
+    margin: 0.5em 0 1em 1.5em;
+    color: var(--text-muted);
+  }
+
+  .post-view li {
+    margin-bottom: 0.25em;
+  }
+
+  .post-view a {
+    color: var(--accent);
+  }
+
+  .post-view blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1em 0;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .loading {
     color: var(--text-muted);
   }
 

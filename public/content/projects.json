@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Linux Mirrors UAGRM",
+    "description": "Espejos de distribuciones Linux y repositorios de software libre para la comunidad universitaria y Bolivia.",
+    "status": "Producción",
+    "repo": "https://github.com/nluagrm/mirrors"
+  },
+  {
+    "name": "Auth Proxy",
+    "description": "Sistema de autenticación y proxy reverso para servicios internos de la universidad.",
+    "status": "Desarrollo",
+    "repo": "https://github.com/nluagrm/auth-proxy"
+  },
+  {
+    "name": "Wiki Comunitaria",
+    "description": "Base de conocimiento colaborativa con guías, tutoriales y documentación técnica sobre software libre.",
+    "status": "Beta",
+    "repo": "https://github.com/nluagrm/wiki"
+  },
+  {
+    "name": "Bot de Discord",
+    "description": "Asistente automatizado para la gestión y moderación del servidor de Discord de la comunidad.",
+    "status": "Mantenimiento",
+    "repo": "https://github.com/nluagrm/bot"
+  }
+]

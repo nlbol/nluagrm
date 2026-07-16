@@ -5,57 +5,49 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <section class="section">
     <div class="content">
-      <h1>Editor de Artículos</h1>
-      <p class="lead">Panel de contribución para redactar y publicar contenido técnico en la comunidad.</p>
+      <h1>Contribuir al Blog</h1>
+      <p class="lead">Todo el contenido se maneja con archivos estáticos en el repositorio. No necesitás backend ni recompilar.</p>
     </div>
   </section>
 
   <section class="section section-alt">
-    <div class="content editor-layout">
-      <div class="editor-meta">
-        <h2>Metadatos</h2>
-        <div class="field">
-          <label for="title">Título</label>
-          <input type="text" id="title" placeholder="Título del artículo" />
-        </div>
-        <div class="field">
-          <label for="tags">Tags</label>
-          <input type="text" id="tags" placeholder="linux, tutorial, bash" />
-        </div>
-        <div class="field">
-          <label for="visibility">Visibilidad</label>
-          <select id="visibility">
-            <option>Público</option>
-            <option>Borrador</option>
-            <option>Solo miembros</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="author">Autor</label>
-          <input type="text" id="author" placeholder="Tu nombre" />
-        </div>
+    <div class="content steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h2>Crear el archivo Markdown</h2>
+        <p>Agregá un archivo <code>.md</code> en <code>public/content/posts/</code> con el slug que quieras (ej: <code>mi-articulo.md</code>).</p>
       </div>
 
-      <div class="editor-main">
-        <h2>Contenido</h2>
-        <div class="toolbar">
-          <span class="tool">B</span>
-          <span class="tool">I</span>
-          <span class="tool"><code>&lt;/&gt;</code></span>
-          <span class="tool">#</span>
-          <span class="tool">Link</span>
-          <span class="tool">Img</span>
-        </div>
-        <textarea
-          class="editor-area"
-          placeholder="Escribí tu contenido en Markdown...&#10;&#10;# Título&#10;Lorem ipsum dolor sit amet..."
-          rows="20"
-        ></textarea>
-        <div class="editor-actions">
-          <button class="btn preview">Vista previa</button>
-          <button class="btn publish">Publicar</button>
-        </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h2>Registrar en el índice</h2>
+        <p>Agregá una entrada en <code>public/content/posts/index.json</code> con los metadatos del artículo:</p>
+        <pre>&#123;
+  "slug": "mi-articulo",
+  "title": "Título del artículo",
+  "date": "2026-07-16",
+  "author": "Tu nombre",
+  "tags": ["linux", "tutorial"],
+  "excerpt": "Breve resumen del artículo."
+&#125;</pre>
       </div>
+
+      <div class="step">
+        <span class="step-num">3</span>
+        <h2>Commit y push</h2>
+        <p>Subí los cambios al repositorio. El sitio se actualiza automáticamente al deployarse — sin recompilar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <h2>Proyectos y Miembros</h2>
+      <p>Para agregar o modificar proyectos y miembros, editá directamente los archivos:</p>
+      <ul class="file-list">
+        <li><code>public/content/projects.json</code> — Lista de proyectos activos</li>
+        <li><code>public/content/members.json</code> — Perfiles del equipo</li>
+      </ul>
     </div>
   </section>
 </Layout>
@@ -79,123 +71,96 @@ import Layout from "../layouts/Layout.astro";
     text-align: center;
   }
 
+  h2 {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    margin-bottom: 0.75rem;
+  }
+
   .lead {
     text-align: center;
     color: var(--text-muted);
-    max-width: 600px;
+    max-width: 640px;
     margin: 1rem auto 0;
     font-size: 1.05rem;
   }
 
-  .editor-layout {
-    display: grid;
-    grid-template-columns: 300px 1fr;
+  .steps {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    margin-top: 2rem;
+    max-width: 700px;
   }
 
-  .editor-meta h2,
-  .editor-main h2 {
-    font-size: 1.15rem;
-    margin-bottom: 1rem;
-  }
-
-  .field {
-    margin-bottom: 1rem;
-  }
-
-  .field label {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 0.35rem;
-  }
-
-  .field input,
-  .field select {
-    width: 100%;
-    padding: 0.6rem 0.75rem;
+  .step {
+    background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 0.9rem;
+    border-radius: 12px;
+    padding: 1.75rem;
+    position: relative;
   }
 
-  .toolbar {
-    display: flex;
-    gap: 0.25rem;
-    padding: 0.5rem;
-    border: 1px solid var(--border);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    background: var(--bg);
-  }
-
-  .tool {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.85rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s;
-    color: var(--text-muted);
-  }
-
-  .tool:hover {
-    background: var(--border);
-    color: var(--text);
-  }
-
-  .editor-area {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid var(--border);
-    border-radius: 0 0 8px 8px;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "SF Mono", "Fira Code", monospace;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    resize: vertical;
-  }
-
-  .editor-area::placeholder {
-    color: var(--text-muted);
-    opacity: 0.6;
-  }
-
-  .editor-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    justify-content: flex-end;
-  }
-
-  .btn {
-    padding: 0.6rem 1.5rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn.publish {
+  .step-num {
+    position: absolute;
+    top: -0.75rem;
+    left: 1rem;
     background: var(--accent);
     color: var(--bg);
-    border-color: var(--accent);
-    font-weight: 600;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
   }
 
-  .btn:hover {
-    opacity: 0.9;
+  .step p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
-  @media (max-width: 768px) {
-    .editor-layout {
-      grid-template-columns: 1fr;
-    }
+  .step code {
+    background: var(--bg-alt);
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.85em;
+  }
+
+  .step pre {
+    background: var(--bg-alt);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-top: 0.75rem;
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .file-list {
+    list-style: none;
+    max-width: 600px;
+    margin: 1.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .file-list li {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .file-list code {
+    color: var(--text);
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.85em;
   }
 </style>
