@@ -1,11 +1,95 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<section class="hero">
+		<div class="hero-bg" />
+		<div class="hero-content">
+			<h1>Núcleo Linux</h1>
+			<p class="subtitle">Comunidad de Software Libre y Código Abierto</p>
+			<p class="location">Universidad Autónoma Gabriel René Moreno</p>
+		</div>
+	</section>
+
+	<section class="section" id="nosotros">
+		<div class="content">
+			<h2>¿Quiénes somos?</h2>
+			<p>Núcleo Linux es la comunidad universitaria de software libre de la UAGRM. Promovemos el uso de GNU/Linux, el código abierto y la cultura del conocimiento compartido.</p>
+		</div>
+	</section>
 </Layout>
+
+<style>
+	.hero {
+		position: relative;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		overflow: hidden;
+	}
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+		z-index: -1;
+	}
+	.hero-bg::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(ellipse at center, rgba(50, 50, 120, 0.3) 0%, transparent 70%);
+	}
+	.hero-content {
+		text-align: center;
+		padding: 0 20px;
+	}
+	.hero-content h1 {
+		font-size: 4rem;
+		margin: 0;
+		letter-spacing: -0.02em;
+	}
+	.subtitle {
+		font-size: 1.3rem;
+		margin: 0.5em 0 0.2em;
+		opacity: 0.9;
+	}
+	.location {
+		font-size: 1rem;
+		opacity: 0.5;
+		margin: 0;
+	}
+
+	.section {
+		min-height: 60vh;
+		padding: 120px 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.content {
+		max-width: 680px;
+		text-align: center;
+	}
+	.content h2 {
+		font-size: 2rem;
+		margin: 0 0 1rem;
+		color: #1a1a2e;
+	}
+	.content p {
+		font-size: 1.1rem;
+		line-height: 1.8;
+		color: #555;
+	}
+
+	@media (max-width: 768px) {
+		.hero-content h1 {
+			font-size: 2.5rem;
+		}
+		.subtitle {
+			font-size: 1rem;
+		}
+	}
+</style>
