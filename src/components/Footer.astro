@@ -1,0 +1,119 @@
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Núcleo Linux UAGRM</h4>
+      <p>Comunidad de Software Libre y Código Abierto de la Universidad Autónoma Gabriel René Moreno.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Enlaces</h4>
+      <a href="/">Inicio</a>
+      <a href="/blog">Blog</a>
+      <a href="/editor">Editor</a>
+      <a href="/comunidad">Comunidad</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p>Recibí novedades académicas y de la comunidad.</p>
+      <form class="newsletter">
+        <input type="email" placeholder="tu@correo.com" required />
+        <button type="submit">Suscribirse</button>
+      </form>
+    </div>
+
+    <div class="footer-col">
+      <h4>Redes</h4>
+      <a href="#">GitHub</a>
+      <a href="#">Discord</a>
+      <a href="#">Telegram</a>
+      <a href="#">Correo</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Núcleo Linux UAGRM. Hecho con 💚 desde Santa Cruz, Bolivia.</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    padding: 3rem 40px 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .footer-col p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .footer-col a {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    padding: 0.2rem 0;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover {
+    color: var(--accent);
+  }
+
+  .newsletter {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .newsletter input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.85rem;
+  }
+
+  .newsletter button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .newsletter button:hover {
+    opacity: 0.9;
+  }
+
+  .footer-bottom {
+    max-width: var(--max-width);
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+</style>

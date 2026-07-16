@@ -1,0 +1,208 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <section class="section">
+    <div class="content">
+      <h1>Blog y Noticias</h1>
+      <p class="lead">Tutoriales técnicos, crónicas de eventos, artículos de opinión y novedades de la comunidad.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="filtros">
+    <div class="content">
+      <div class="filters">
+        <span class="filter active">Todos</span>
+        <span class="filter">Tutoriales</span>
+        <span class="filter">Eventos</span>
+        <span class="filter">Opinión</span>
+        <span class="filter">Investigación</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="articulos">
+    <div class="content">
+      <div class="feed">
+        <article class="post">
+          <span class="tag">Tutorial</span>
+          <h3>Título del artículo</h3>
+          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
+          <span class="meta">Por Autor — 16 Jul 2026</span>
+        </article>
+        <article class="post">
+          <span class="tag">Evento</span>
+          <h3>Título del artículo</h3>
+          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
+          <span class="meta">Por Autor — 16 Jul 2026</span>
+        </article>
+        <article class="post">
+          <span class="tag">Opinión</span>
+          <h3>Título del artículo</h3>
+          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
+          <span class="meta">Por Autor — 16 Jul 2026</span>
+        </article>
+        <article class="post">
+          <span class="tag">Investigación</span>
+          <h3>Título del artículo</h3>
+          <p class="excerpt">Resumen del contenido del artículo. Acá irá una breve descripción del tema tratado.</p>
+          <span class="meta">Por Autor — 16 Jul 2026</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="newsletter">
+    <div class="content newsletter-box">
+      <h2>Newsletter</h2>
+      <p>Suscribite para recibir novedades académicas, convocatorias y resúmenes mensuales.</p>
+      <form class="subscribe">
+        <input type="email" placeholder="tu@correo.com" required />
+        <button type="submit">Suscribirse</button>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .section-alt {
+    background: var(--bg-alt);
+  }
+
+  .content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+  }
+
+  .lead {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 1rem auto 0;
+    font-size: 1.05rem;
+  }
+
+  .filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter.active,
+  .filter:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  .feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .post {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .post:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .post h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .excerpt {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .newsletter-box {
+    text-align: center;
+  }
+
+  .newsletter-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .newsletter-box p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .subscribe {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .subscribe input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.9rem;
+  }
+
+  .subscribe button {
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .subscribe button:hover {
+    opacity: 0.9;
+  }
+</style>

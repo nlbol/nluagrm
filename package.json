@@ -2,6 +2,7 @@
   "name": "nucleolinux",
   "type": "module",
   "version": "0.0.1",
+  "description": "Núcleo Linux UAGRM — Comunidad de Software Libre y Código Abierto",
   "engines": {
     "node": ">=22.12.0"
   },

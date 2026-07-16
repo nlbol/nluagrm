@@ -1,0 +1,201 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <section class="section">
+    <div class="content">
+      <h1>Editor de Artículos</h1>
+      <p class="lead">Panel de contribución para redactar y publicar contenido técnico en la comunidad.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="content editor-layout">
+      <div class="editor-meta">
+        <h2>Metadatos</h2>
+        <div class="field">
+          <label for="title">Título</label>
+          <input type="text" id="title" placeholder="Título del artículo" />
+        </div>
+        <div class="field">
+          <label for="tags">Tags</label>
+          <input type="text" id="tags" placeholder="linux, tutorial, bash" />
+        </div>
+        <div class="field">
+          <label for="visibility">Visibilidad</label>
+          <select id="visibility">
+            <option>Público</option>
+            <option>Borrador</option>
+            <option>Solo miembros</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="author">Autor</label>
+          <input type="text" id="author" placeholder="Tu nombre" />
+        </div>
+      </div>
+
+      <div class="editor-main">
+        <h2>Contenido</h2>
+        <div class="toolbar">
+          <span class="tool">B</span>
+          <span class="tool">I</span>
+          <span class="tool"><code>&lt;/&gt;</code></span>
+          <span class="tool">#</span>
+          <span class="tool">Link</span>
+          <span class="tool">Img</span>
+        </div>
+        <textarea
+          class="editor-area"
+          placeholder="Escribí tu contenido en Markdown...&#10;&#10;# Título&#10;Lorem ipsum dolor sit amet..."
+          rows="20"
+        ></textarea>
+        <div class="editor-actions">
+          <button class="btn preview">Vista previa</button>
+          <button class="btn publish">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .section-alt {
+    background: var(--bg-alt);
+  }
+
+  .content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+  }
+
+  .lead {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 1rem auto 0;
+    font-size: 1.05rem;
+  }
+
+  .editor-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .editor-meta h2,
+  .editor-main h2 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+  }
+
+  .field {
+    margin-bottom: 1rem;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.9rem;
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    background: var(--bg);
+  }
+
+  .tool {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: var(--text-muted);
+  }
+
+  .tool:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+
+  .editor-area {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0 0 8px 8px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    resize: vertical;
+  }
+
+  .editor-area::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  .editor-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    padding: 0.6rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn.publish {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    .editor-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
