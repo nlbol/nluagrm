@@ -33,12 +33,19 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script>
+
   async function loadContent() {
     try {
       const [projects, members] = await Promise.all([
         fetch("/content/projects.json").then((r) => r.json()),
         fetch("/content/members.json").then((r) => r.json()),
       ]);
+
+      function linkIcon(url) {
+        if (url.includes("github.com")) return "github";
+        if (url.includes("wiki.nluagrm.org")) return "book-open";
+        return "external-link";
+      }
 
       const pGrid = document.getElementById("projects-grid");
       pGrid.innerHTML = projects
@@ -47,7 +54,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="card">
           <h3>${p.name}</h3>
           <p>${p.description}</p>
-          ${p.repo ? `<a href="${p.repo}" class="repo-link" target="_blank">Repositorio →</a>` : ""}
+          ${(p.links || []).map((l) => `<a href="${l.url}" class="repo-link" target="_blank" title="${l.label}"><i data-lucide="${linkIcon(l.url)}" class="link-icon"></i></a>`).join("")}
           <span class="status">${p.status}</span>
         </div>`,
         )
@@ -72,7 +79,7 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
-  loadContent();
+  loadContent().then(() => lucide.createIcons());
 </script>
 
 <style>
@@ -148,10 +155,14 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .repo-link {
-    display: inline-block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.6rem;
+  }
+
+  .link-icon {
+    width: 18px;
+    height: 18px;
   }
 
   .status {

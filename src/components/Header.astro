@@ -1,5 +1,8 @@
 <header id="header">
-  <a href="/" class="logo">Núcleo Linux UAGRM</a>
+  <a href="/" class="logo">
+    <i data-lucide="linux" class="logo-icon"></i>
+    Núcleo Linux UAGRM
+  </a>
   <nav>
     <a href="/">Inicio</a>
     <a href="/blog">Blog</a>
@@ -53,10 +56,19 @@
   }
 
   .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--text);
     text-decoration: none;
     font-weight: 700;
     font-size: 1.1rem;
+  }
+
+  .logo-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
   }
 
   nav {
