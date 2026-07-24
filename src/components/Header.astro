@@ -1,108 +1,112 @@
 <header id="header">
-  <a href="/" class="logo">
-    <i data-lucide="linux" class="logo-icon"></i>
-    Núcleo Linux UAGRM
-  </a>
-  <nav>
-    <a href="/">Inicio</a>
-    <a href="/blog">Blog</a>
-    <a href="/editor">Editor</a>
-    <a href="/comunidad">Comunidad</a>
-  </nav>
+	<a href="/" class="logo">
+		<img src="public/icon.png" alt="nluagrm" class="logo-icon">
+		<span>Nucleo Linux UAGRM</span>
+	</a>
+	<nav>
+		<a href="/">Inicio</a>
+		<a href="/comunidad">Comunidad</a>
+	</nav>
 </header>
 
 <script>
-  const header = document.getElementById("header");
-  let lastScroll = 0;
+	const header = document.getElementById("header");
+	let lastScroll = 0;
 
-  window.addEventListener(
-    "scroll",
-    () => {
-      const y = window.scrollY;
-      if (y > 80 && y > lastScroll) {
-        header?.classList.add("hidden");
-      } else {
-        header?.classList.remove("hidden");
-      }
-      lastScroll = y;
-    },
-    { passive: true },
-  );
+	window.addEventListener(
+		"scroll",
+		() => {
+			const y = window.scrollY;
+			if (y > 80 && y > lastScroll) {
+				header?.classList.add("hidden");
+			} else {
+				header?.classList.remove("hidden");
+			}
+			lastScroll = y;
+		},
+		{ passive: true },
+	);
 </script>
 
 <style>
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    transform: translateY(0);
-    will-change: transform;
-    transition: transform 0.35s ease, background 0.3s;
-    background: color-mix(in srgb, var(--bg) 80%, transparent);
-  }
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 40px;
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border-bottom: 1px solid var(--border);
+		transform: translateY(0);
+		will-change: transform;
+		transition: transform 0.35s ease, background 0.3s;
+		background: color-mix(in srgb, var(--bg) 80%, transparent);
+	}
 
-  header.hidden {
-    transform: translateY(-100%);
-  }
+	header.hidden {
+		transform: translateY(-100%);
+	}
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--text);
+		text-decoration: none;
+		font-weight: 700;
+		/* font-size: 1.1rem; */
+		font-size: clamp(0.5rem, 3.5vw, 1.1rem);
+	}
+	@media (max-width: 768px) {
+		.logo > span {
+			display: none; /* oculta el texto y deja solo el icono en móviles muy chicos */
+		}
+	}
 
-  .logo-icon {
-    width: 24px;
-    height: 24px;
-    color: var(--accent);
-  }
+	.logo-icon {
+		width: 24px;
+		height: 24px;
+		color: var(--accent);
+	}
 
-  nav {
-    display: flex;
-    gap: 28px;
-  }
+	nav {
+		display: flex;
+		gap: 28px;
+	}
 
-  nav a {
-    position: relative;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding-bottom: 4px;
-    transition: color 0.2s;
-  }
+	nav a {
+		position: relative;
+		color: var(--text-muted);
+		text-decoration: none;
+		font-size: 0.9rem;
+		padding-bottom: 4px;
+		transition: color 0.2s;
+	}
 
-  nav a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 100%;
-    height: 2px;
-    background: var(--accent);
-    border-radius: 2px;
-    transform: translateX(-50%) scaleX(0);
-    transition: transform 0.25s ease;
-  }
+	nav a::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 100%;
+		height: 2px;
+		background: var(--accent);
+		border-radius: 2px;
+		transform: translateX(-50%) scaleX(0);
+		transition: transform 0.25s ease;
+	}
 
-  nav a:hover {
-    color: var(--text);
-  }
+	nav a:hover {
+		color: var(--text);
+	}
 
-  nav a:hover::after {
-    transform: translateX(-50%) scaleX(1);
-  }
+	nav a:hover::after {
+		transform: translateX(-50%) scaleX(1);
+	}
 </style>

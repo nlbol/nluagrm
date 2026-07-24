@@ -1,20 +1,32 @@
 [
-  {
-    "name": "FICCT-OS",
-    "description": "Distribución GNU/Linux con entornos de desarrollo preinstalados para los primeros semestres de la FICCT. Live: nucleolinux:nucleolinux | DB: root:nucleolinux",
-    "status": "Desarrollo",
-    "links": [
-      { "url": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:distribucion_gnu_linux_ficct-os", "label": "Wiki" },
-      { "url": "https://github.com/nluagrm", "label": "GitHub" }
-    ]
-  },
-  {
-    "name": "Minunux GNU/Linux",
-    "description": "Distribución liviana basada en MiniOS, creada para equipos de bajos recursos en el proyecto Desarrollo Web en Hogares.",
-    "status": "Desarrollo",
-    "links": [
-      { "url": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux", "label": "Wiki" },
-      { "url": "https://github.com/minios-linux/minios-live", "label": "GitHub" }
-    ]
-  }
+	{
+		"name": "FICCT-OS",
+		"description": "Distribución GNU/Linux con entornos de desarrollo preinstalados para los primeros semestres de la FICCT. Live: nucleolinux:nucleolinux | DB: root:nucleolinux",
+		"status": "Desarrollo",
+		"links": [
+			{
+				"url": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:distribucion_gnu_linux_ficct-os",
+				"label": "Wiki"
+			},
+			{
+				"url": "https://github.com/nluagrm",
+				"label": "GitHub"
+			}
+		]
+	},
+	{
+		"name": "Minunux GNU/Linux",
+		"description": "Distribución liviana basada en MiniOS, creada para equipos de bajos recursos en el proyecto Desarrollo Web en Hogares.",
+		"status": "Desarrollo",
+		"links": [
+			{
+				"url": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
+				"label": "Wiki"
+			},
+			{
+				"url": "https://github.com/minios-linux/minios-live",
+				"label": "GitHub"
+			}
+		]
+	}
 ]

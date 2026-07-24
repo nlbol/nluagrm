@@ -1,0 +1,47 @@
+[
+	{
+		"img": "/icon.jpg",
+		"title": "nluagrm.org — Principal",
+		"url": "https://nluagrm.org"
+	},
+	{
+		"img": "/logo.png",
+		"title": "blog.nluagrm.org — Blog",
+		"url": "https://blog.nluagrm.org"
+	},
+	{
+		"img": "/icon.jpg",
+		"title": "news.nluagrm.org — Noticias",
+		"url": "https://news.nluagrm.org"
+	},
+	{
+		"img": "/logo.png",
+		"title": "wiki.nluagrm.org — Wiki",
+		"url": "https://wiki.nluagrm.org"
+	},
+	{
+		"img": "/icon.jpg",
+		"title": "calendario.nluagrm.org — Actividades",
+		"url": "https://calendario.nluagrm.org"
+	},
+	{
+		"img": "/logo.png",
+		"title": "Facebook · Página",
+		"url": "https://www.facebook.com/nucleolinuxuagrm"
+	},
+	{
+		"img": "/icon.jpg",
+		"title": "Facebook · Grupo",
+		"url": "https://www.facebook.com/groups/nucleolinux.uagrm"
+	},
+	{
+		"img": "/logo.png",
+		"title": "YouTube",
+		"url": "https://www.youtube.com/@nucleolinuxuagrm9768"
+	},
+	{
+		"img": "/icon.jpg",
+		"title": "Telegram",
+		"url": "https://t.me/nucleolinux_uagrm"
+	}
+]
