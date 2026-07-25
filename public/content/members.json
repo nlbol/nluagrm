@@ -1,62 +1,27 @@
 [
-	{
-		"name": "Robert Navarro",
-		"role": "Presidente",
-		"bio": "Lidera la comunidad y coordina las actividades, proyectos y eventos del Núcleo Linux UAGRM.",
-		"github": "#"
-	},
-	{
-		"name": "Dakar",
-		"role": "Vicepresidente",
-		"bio": "Apoya la gestión del presidente y organiza las reuniones y la planificación estratégica.",
-		"github": "#"
-	},
-	{
-		"name": "Santana",
-		"role": "Secretario de Hacienda",
-		"bio": "Administra los recursos económicos y gestiona los fondos para proyectos y eventos.",
-		"github": "#"
-	},
-	{
-		"name": "Fernando",
-		"role": "Secretario de Actas",
-		"bio": "Registra las actas de reuniones y mantiene la documentación oficial de la comunidad.",
-		"github": "#"
-	},
-	{
-		"name": "Daniel",
-		"role": "Vocal",
-		"bio": "Participa activamente en la difusión y organización de las actividades comunitarias.",
-		"github": "#"
-	},
-	{
-		"name": "Luishiño",
-		"role": "Vocal",
-		"bio": "Colabora en la logística de eventos y en la coordinación de talleres y charlas.",
-		"github": "#"
-	},
-	{
-		"name": "Juan Vladimir",
-		"role": "Miembro",
-		"bio": "Desarrollador y colaborador en los proyectos de infraestructura y repositorios.",
-		"github": "https://github.com/juanvladimir13"
-	},
-	{
-		"name": "Magui",
-		"role": "Miembro",
-		"bio": "Colabora en actividades de difusión y diseño de materiales para la comunidad.",
-		"github": "#"
-	},
-	{
-		"name": "kj",
-		"role": "Miembro",
-		"bio": "Participa en el desarrollo de proyectos y soporte técnico de la comunidad.",
-		"github": "#"
-	},
-	{
-		"name": "Gary",
-		"role": "Miembro",
-		"bio": "Colabora en la organización de eventos y en la administración de redes sociales.",
-		"github": "https://github.com/Gary"
-	}
+        {
+                "name": "Fersho Uno",
+                "role": "Fundador",
+                "bio": "Usuario de GNU/Linux.",
+                "github": "https://github.com/fershouno"
+        },
+        {
+                "name": "Juan Vladimir",
+                "role": "Fundador",
+                "bio": "Desarrollador y colaborador en los proyectos de infraestructura y repositorios.",
+                "github": "https://github.com/juanvladimir13"
+        },
+        {
+                "name": "andy's ok computer ",
+                "role": "Presidente",
+                "bio": "",
+                "github": "#"
+        },
+        {
+                "name": "@SantanaBitwise",
+                "role": "Vicepresidente",
+                "bio": "",
+                "github": "#"
+        }
 ]
+
