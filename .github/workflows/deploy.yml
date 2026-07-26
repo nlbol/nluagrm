@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: deploy-pages
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
@@ -17,15 +17,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -34,13 +34,23 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build project
         run: pnpm build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Verify build
+        run: |
+          echo "Contenido de dist:"
+          ls -lah dist
+          test -f dist/index.html
+
+      - name: Create .nojekyll
+        run: touch dist/.nojekyll
+
+      - name: Deploy to public branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: public
-          publish_dir: ./dist
-          force_orphan: true
+          branch: public
+          folder: dist
+          clean: true
+          clean-exclude: |
+            CNAME
