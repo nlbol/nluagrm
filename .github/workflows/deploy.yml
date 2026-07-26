@@ -39,18 +39,31 @@ jobs:
 
       - name: Verify build
         run: |
-          echo "Contenido de dist:"
-          ls -lah dist
+          test -d dist
           test -f dist/index.html
 
       - name: Create .nojekyll
-        run: touch dist/.nojekyll
+        run: |
+          touch dist/.nojekyll
 
-      - name: Deploy to public branch
+      - name: Create CNAME
+        run: |
+          echo "nluagrm.org" > dist/CNAME
+
+      - name: Verify generated site
+        run: |
+          echo "===== DIST ====="
+          find dist -maxdepth 2 -type f | sort
+          echo
+          echo "===== CNAME ====="
+          cat dist/CNAME
+
+      - name: Deploy to public
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: public
           folder: dist
           clean: true
           clean-exclude: |
-            CNAME
+            .git
+          single-commit: true
