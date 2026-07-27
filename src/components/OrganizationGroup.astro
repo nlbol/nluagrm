@@ -1,0 +1,75 @@
+---
+import MemberCard from "./MemberCard.astro";
+
+interface Member {
+	name: string;
+	alias?: string;
+	photo?: string;
+	description?: string;
+	role?: string;
+	website?: string;
+	github?: string;
+}
+
+interface Props {
+	title: string;
+	members: Member[];
+}
+
+const { title, members } = Astro.props;
+---
+
+<div class="org-group">
+	<h3 class="group-title">{title}</h3>
+	<div class="group-grid">
+		{members.map((m) => (
+			<MemberCard
+				name={m.name}
+				alias={m.alias}
+				photo={m.photo}
+				description={m.description}
+				role={m.role}
+				website={m.website}
+				github={m.github}
+			/>
+		))}
+	</div>
+</div>
+
+<style>
+	.org-group {
+		margin-bottom: 3rem;
+	}
+
+	.org-group:last-child {
+		margin-bottom: 0;
+	}
+
+	.group-title {
+		font-size: 1.1rem;
+		text-align: center;
+		margin-bottom: 1.25rem;
+		color: var(--accent);
+		font-weight: 600;
+		position: relative;
+		padding-bottom: 0.75rem;
+	}
+
+	.group-title::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 40px;
+		height: 2px;
+		background: var(--border);
+		border-radius: 2px;
+	}
+
+	.group-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.25rem;
+	}
+</style>

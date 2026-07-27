@@ -1,32 +1,18 @@
-<header id="header">
+<header>
 	<a href="/" class="logo">
-		<img src="public/icon.png" alt="nluagrm" class="logo-icon">
+		<img src="/icon.png" alt="Núcleo Linux UAGRM" class="logo-icon">
 		<span>Nucleo Linux UAGRM</span>
 	</a>
 	<nav>
 		<a href="/">Inicio</a>
+		<a href="/proyectos">Proyectos</a>
 		<a href="/comunidad">Comunidad</a>
+		<a href="/acerca">Acerca de</a>
+		<a href="/faq">FAQ</a>
 	</nav>
 </header>
 
-<script>
-	const header = document.getElementById("header");
-	let lastScroll = 0;
 
-	window.addEventListener(
-		"scroll",
-		() => {
-			const y = window.scrollY;
-			if (y > 80 && y > lastScroll) {
-				header?.classList.add("hidden");
-			} else {
-				header?.classList.remove("hidden");
-			}
-			lastScroll = y;
-		},
-		{ passive: true },
-	);
-</script>
 
 <style>
 	header {
@@ -43,14 +29,8 @@
 		backdrop-filter: blur(16px);
 		-webkit-backdrop-filter: blur(16px);
 		border-bottom: 1px solid var(--border);
-		transform: translateY(0);
-		will-change: transform;
-		transition: transform 0.35s ease, background 0.3s;
+		transition: background 0.3s;
 		background: color-mix(in srgb, var(--bg) 80%, transparent);
-	}
-
-	header.hidden {
-		transform: translateY(-100%);
 	}
 
 	.logo {

@@ -1,86 +1,57 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import OrganizationGroup from "../components/OrganizationGroup.astro";
+import membersData from "../../public/content/members.json";
+
+const members = membersData.members || [];
+
+const groupOrder = ["founder", "founding-member", "board"] as const;
+const groupLabels: Record<string, string> = {
+	founder: "Fundadores",
+	"founding-member": "Miembros Fundadores",
+	board: "Directiva Actual",
+};
+
+const grouped = new Map<string, typeof members>();
+for (const m of members) {
+	const g = m.group || "board";
+	if (!grouped.has(g)) grouped.set(g, []);
+	grouped.get(g)!.push(m);
+}
 ---
 
 <Layout>
 	<section class="section">
 		<div class="content">
-			<h1>Comunidad y Proyectos</h1>
-			<p class="lead">Conocé nuestros proyectos activos, colaboradores principales y unite al equipo.</p>
+			<h1>Comunidad</h1>
+			<p class="lead">Conocé a la organización, sus fundadores y la directiva actual que impulsa la comunidad.</p>
 		</div>
 	</section>
 
-	<section class="section section-alt" id="proyectos">
+	<section class="section section-alt" id="organizacion">
 		<div class="content">
-			<h2>Proyectos Activos</h2>
-			<div class="grid" id="projects-grid"></div>
+			<h2>Organización</h2>
+			<div class="org-container">
+				{groupOrder.filter((g) => grouped.has(g)).map((g, i) => (
+					<>
+						{i > 0 && <div class="org-divider"></div>}
+						<OrganizationGroup
+							title={groupLabels[g]}
+							members={grouped.get(g)!}
+						/>
+					</>
+				))}
+			</div>
 		</div>
 	</section>
 
-	<section class="section" id="contribuidores">
-		<div class="content">
-			<h2>Contribuidores Principales</h2>
-			<div class="grid" id="members-grid"></div>
-		</div>
-	</section>
-
-	<section class="section section-alt" id="unirse">
+	<section class="section section-compact" id="unirse">
 		<div class="content">
 			<h2>Sumate al Equipo</h2>
 			<p class="form-intro">Escribinos a <strong>fershouno@proton.me</strong> para coordinar tu incorporación.</p>
 		</div>
 	</section>
 </Layout>
-
-<script>
-
-	async function loadContent() {
-		try {
-			const [projects, members] = await Promise.all([
-				fetch("/content/projects.json").then((r) => r.json()),
-				fetch("/content/members.json").then((r) => r.json()),
-			]);
-
-			function linkIcon(url) {
-				if (url.includes("github.com")) return "github";
-				if (url.includes("wiki.nluagrm.org")) return "book-open";
-				return "external-link";
-			}
-
-			const pGrid = document.getElementById("projects-grid");
-			pGrid.innerHTML = projects
-				.map(
-					(p) => `
-		<div class="card">
-		  <h3>${p.name}</h3>
-		  <p>${p.description}</p>
-		  ${(p.links || []).map((l) => `<a href="${l.url}" class="repo-link" target="_blank" title="${l.label}"><i data-lucide="${linkIcon(l.url)}" class="link-icon"></i></a>`).join("")}
-		  <span class="status">${p.status}</span>
-		</div>`,
-				)
-				.join("");
-
-			const mGrid = document.getElementById("members-grid");
-			mGrid.innerHTML = members
-				.map(
-					(m) => `
-		<div class="profile">
-		  <div class="avatar">${m.name.charAt(0)}</div>
-		  <h3>${m.name}</h3>
-		  <p class="role">${m.role}</p>
-		  <p class="bio">${m.bio}</p>
-		  ${m.github && m.github !== "#" ? `<a href="${m.github}" class="github-link" target="_blank">GitHub</a>` : ""}
-		</div>`,
-				)
-				.join("");
-		} catch {
-			document.getElementById("projects-grid").innerHTML =
-				'<p class="error">Error al cargar los datos.</p>';
-		}
-	}
-
-	loadContent().then(() => lucide.createIcons());
-</script>
 
 <style>
 	.section {
@@ -123,112 +94,18 @@ import Layout from "../layouts/Layout.astro";
 		font-size: 1rem;
 	}
 
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-		gap: 1.5rem;
-		margin-top: 2rem;
+	.section-compact {
+		padding: 2rem 2rem;
 	}
 
-	.card {
-		background: var(--card-bg);
-		border: 1px solid var(--border);
-		border-radius: 12px;
-		padding: 1.75rem;
-		transition: transform 0.2s, box-shadow 0.2s;
+	.org-container {
+		max-width: 900px;
+		margin: 0 auto;
 	}
 
-	.card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-	}
-
-	.card h3 {
-		font-size: 1.15rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.card p {
-		color: var(--text-muted);
-		font-size: 0.9rem;
-		margin-bottom: 0.75rem;
-	}
-
-	.repo-link {
-		display: inline-flex;
-		align-items: center;
-		margin-right: 0.6rem;
-	}
-
-	.link-icon {
-		width: 18px;
-		height: 18px;
-	}
-
-	.status {
-		display: inline-block;
-		font-size: 0.75rem;
-		font-weight: 600;
-		padding: 0.25rem 0.75rem;
-		border-radius: 12px;
-		background: color-mix(in srgb, var(--accent) 15%, transparent);
-		color: var(--accent);
-	}
-
-	.profile {
-		text-align: center;
-		background: var(--card-bg);
-		border: 1px solid var(--border);
-		border-radius: 12px;
-		padding: 2rem 1.5rem;
-		transition: transform 0.2s, box-shadow 0.2s;
-	}
-
-	.profile:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-	}
-
-	.avatar {
-		width: 72px;
-		height: 72px;
-		border-radius: 50%;
-		background: var(--accent);
-		color: var(--bg);
-		font-size: 1.5rem;
-		font-weight: 700;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 0 auto 1rem;
-	}
-
-	.profile h3 {
-		font-size: 1.05rem;
-		margin-bottom: 0.25rem;
-	}
-
-	.role {
-		font-size: 0.85rem;
-		color: var(--accent);
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-	}
-
-	.bio {
-		font-size: 0.85rem;
-		color: var(--text-muted);
-		margin-bottom: 0.75rem;
-	}
-
-	.github-link {
-		font-size: 0.85rem;
-		font-weight: 600;
-	}
-
-	.error {
-		color: var(--text-muted);
-		grid-column: 1 / -1;
-		text-align: center;
+	.org-divider {
+		height: 1px;
+		background: var(--border);
+		margin: 0.5rem 0 2.5rem;
 	}
 </style>

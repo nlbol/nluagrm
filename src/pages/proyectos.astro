@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import projectsData from "../../public/content/projects.json";
+
+const projects = projectsData.projects || [];
+---
+
+<Layout>
+	<section class="section">
+		<div class="content">
+			<h1>Proyectos</h1>
+			<p class="lead">Conocé nuestros proyectos activos y colaborá con el desarrollo de software libre.</p>
+		</div>
+	</section>
+
+	<section class="section section-alt" id="proyectos">
+		<div class="content">
+			<div class="grid">
+				{projects.map((p) => (
+					<ProjectCard
+						title={p.title}
+						description={p.description}
+						image={p.image}
+						license={p.license}
+						status={p.status}
+						website={p.website}
+						github={p.github}
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.section {
+		padding: 4rem 2rem;
+	}
+
+	.section-alt {
+		background: var(--bg-alt);
+	}
+
+	.content {
+		max-width: var(--max-width);
+		margin: 0 auto;
+	}
+
+	h1 {
+		font-size: clamp(2rem, 4vw, 3rem);
+		text-align: center;
+	}
+
+	.lead {
+		text-align: center;
+		color: var(--text-muted);
+		max-width: 600px;
+		margin: 1rem auto 0;
+		font-size: 1.05rem;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.5rem;
+	}
+</style>

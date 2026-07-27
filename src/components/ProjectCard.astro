@@ -1,0 +1,172 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	license?: string;
+	status?: string;
+	website?: string;
+	github?: string;
+}
+
+const { title, description, image, license, status, website, github } = Astro.props;
+
+const statusMap: Record<string, { label: string; icon: string }> = {
+	development: { label: "Desarrollo", icon: "🟡" },
+	active: { label: "Activo", icon: "🟢" },
+	archived: { label: "Archivado", icon: "⚫" },
+};
+
+const st = statusMap[status || ""] || statusMap.development;
+---
+
+<div class="project-card">
+	{image && (
+		<div class="project-img">
+			<img src={image} alt={title} loading="lazy" />
+		</div>
+	)}
+	<h3 class="project-title">{title}</h3>
+	{description && <p class="project-desc">{description}</p>}
+	<div class="project-meta">
+		{license && <span class="license-badge">{license}</span>}
+		<span class={`status-badge ${status || "development"}`}>{st.icon} {st.label}</span>
+	</div>
+	<div class="card-actions">
+		{website && (
+			<a href={website} class="icon-btn" target="_blank" rel="noopener" aria-label="Sitio web">
+				<i data-lucide="globe" class="icon-sm"></i>
+			</a>
+		)}
+		{github && (
+			<a href={github} class="icon-btn" target="_blank" rel="noopener" aria-label="GitHub">
+				<svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+			</a>
+		)}
+	</div>
+</div>
+
+<style>
+	.project-card {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 12px;
+		overflow: hidden;
+		padding: 1.5rem 1.25rem;
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+
+	.project-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+	}
+
+	.project-img {
+		overflow: hidden;
+		border-radius: 8px;
+		margin: -1.5rem -1.25rem 1rem;
+	}
+
+	.project-img img {
+		width: 100%;
+		height: 160px;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.3s;
+	}
+
+	.project-card:hover .project-img img {
+		transform: scale(1.04);
+	}
+
+	.project-title {
+		font-size: 1.05rem;
+		margin-bottom: 0.35rem;
+	}
+
+	.project-desc {
+		flex: 1;
+		font-size: 0.825rem;
+		color: var(--text-muted);
+		line-height: 1.45;
+		margin-bottom: 0.6rem;
+	}
+
+	.project-meta {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.4rem;
+		margin-bottom: 0.75rem;
+		flex-wrap: wrap;
+	}
+
+	.license-badge {
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.65rem;
+		font-weight: 600;
+		padding: 0.15rem 0.5rem;
+		border-radius: 8px;
+		background: color-mix(in srgb, var(--accent-2) 10%, transparent);
+		color: var(--accent-2);
+		white-space: nowrap;
+	}
+
+	.status-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		font-size: 0.65rem;
+		font-weight: 600;
+		padding: 0.15rem 0.5rem;
+		border-radius: 8px;
+		white-space: nowrap;
+	}
+
+	.status-badge.development {
+		background: color-mix(in srgb, #eab308 12%, transparent);
+		color: #eab308;
+	}
+
+	.status-badge.active {
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+		color: var(--accent);
+	}
+
+	.status-badge.archived {
+		background: color-mix(in srgb, var(--text-muted) 12%, transparent);
+		color: var(--text-muted);
+	}
+
+	.card-actions {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.35rem;
+	}
+
+	:global(.icon-btn) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 8px;
+		color: var(--text-muted);
+		transition: color 0.2s, background 0.2s;
+	}
+
+	:global(.icon-btn:hover) {
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 8%, transparent);
+	}
+
+	:global(.icon-sm) {
+		width: 16px;
+		height: 16px;
+	}
+</style>

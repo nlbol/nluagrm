@@ -1,27 +1,154 @@
-[
-        {
-                "name": "Fersho Uno",
-                "role": "Fundador",
-                "bio": "Usuario de GNU/Linux.",
-                "github": "https://github.com/fershouno"
-        },
-        {
-                "name": "Juan Vladimir",
-                "role": "Fundador",
-                "bio": "Desarrollador y colaborador en los proyectos de infraestructura y repositorios.",
-                "github": "https://github.com/juanvladimir13"
-        },
-        {
-                "name": "andy's ok computer ",
-                "role": "Presidente",
-                "bio": "",
-                "github": "#"
-        },
-        {
-                "name": "@SantanaBitwise",
-                "role": "Vicepresidente",
-                "bio": "",
-                "github": "#"
-        }
-]
-
+{
+	"members": [
+		{
+			"name": "Fernando",
+			"alias": "@FershoUno",
+			"photo": "/fershouno.png",
+			"description": "Usuario de GNU/Linux.",
+			"group": "founder",
+			"role": "Administrador",
+			"website": "https://fershouno.me",
+			"github": "https://github.com/fershouno"
+		},
+		{
+			"name": "Juan Vladimir",
+			"alias": "juanvladimir13",
+			"photo": "",
+			"description": "Desarrollador y colaborador en los proyectos de infraestructura y repositorios.",
+			"group": "founder",
+			"role": "",
+			"website": "",
+			"github": "https://github.com/juanvladimir13"
+		},
+		{
+			"name": "Gary",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "founding-member",
+			"role": "",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Daniel",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "founding-member",
+			"role": "Administrador",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Robert",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "founding-member",
+			"role": "Administrador",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Magui",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "founding-member",
+			"role": "Administrador",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "KJ",
+			"alias": "kj2me",
+			"photo": "",
+			"description": "",
+			"group": "founding-member",
+			"role": "Miembro",
+			"website": "https://kj2.me",
+			"github": "https://git.kj2.me/"
+		},
+		{
+			"name": "andy's ok computer",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Presidenta",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "SantanaBitwise",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Vicepresidente",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Valeria",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Stra. Hacienda",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Saleth",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Stra. Actas",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Maria",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Vocal",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Grover",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Miembro",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Alex",
+			"alias": "alexlidersupremo",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Miembro",
+			"website": "",
+			"github": ""
+		},
+		{
+			"name": "Belen",
+			"alias": "",
+			"photo": "",
+			"description": "",
+			"group": "board",
+			"role": "Miembro",
+			"website": "",
+			"github": ""
+		}
+	]
+}

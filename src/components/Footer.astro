@@ -1,3 +1,7 @@
+---
+import { footerPlatforms, footerSocials } from "../config/footer";
+---
+
 <footer>
 	<div class="footer-inner">
 		<div class="footer-col">
@@ -7,24 +11,21 @@
 
 		<div class="footer-col">
 			<h4>Plataforma</h4>
-			<a href="https://nluagrm.org">nluagrm.org — Principal</a>
-			<a href="https://blog.nluagrm.org">blog.nluagrm.org — Blog</a>
-			<a href="https://news.nluagrm.org">news.nluagrm.org — Noticias</a>
-			<a href="https://wiki.nluagrm.org">wiki.nluagrm.org — Wiki</a>
-			<a href="https://calendario.nluagrm.org">calendario.nluagrm.org — Actividades</a>
+			{footerPlatforms.map((p) => (
+				<a href={p.url}>{p.name}</a>
+			))}
 		</div>
 
 		<div class="footer-col">
 			<h4>Redes</h4>
-			<a href="https://www.facebook.com/nucleolinuxuagrm">Facebook · Página</a>
-			<a href="https://www.facebook.com/groups/nucleolinux.uagrm">Facebook · Grupo</a>
-			<a href="https://www.youtube.com/@nucleolinuxuagrm9768">YouTube</a>
-			<a href="https://t.me/nucleolinux_uagrm">Telegram</a>
+			{footerSocials.map((s) => (
+				<a href={s.url}>{s.name}</a>
+			))}
 		</div>
 	</div>
 
 	<div class="footer-bottom">
-		<p> 2026 Núcleo Linux UAGRM. Santa Cruz, Bolivia.</p>
+		<p>© 2026 Núcleo Linux UAGRM. Santa Cruz, Bolivia.</p>
 	</div>
 </footer>
 

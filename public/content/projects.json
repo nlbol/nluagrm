@@ -1,32 +1,58 @@
-[
-	{
-		"name": "FICCT-OS",
-		"description": "Distribución GNU/Linux con entornos de desarrollo preinstalados para los primeros semestres de la FICCT. Live: nucleolinux:nucleolinux | DB: root:nucleolinux",
-		"status": "Desarrollo",
-		"links": [
-			{
-				"url": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:distribucion_gnu_linux_ficct-os",
-				"label": "Wiki"
-			},
-			{
-				"url": "https://github.com/nluagrm",
-				"label": "GitHub"
-			}
-		]
-	},
-	{
-		"name": "Minunux GNU/Linux",
-		"description": "Distribución liviana basada en MiniOS, creada para equipos de bajos recursos en el proyecto Desarrollo Web en Hogares.",
-		"status": "Desarrollo",
-		"links": [
-			{
-				"url": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
-				"label": "Wiki"
-			},
-			{
-				"url": "https://github.com/minios-linux/minios-live",
-				"label": "GitHub"
-			}
-		]
-	}
-]
+{
+	"projects": [
+		{
+			"title": "FICCT-OS",
+			"description": "Distribución GNU/Linux con entornos de desarrollo preinstalados para los primeros semestres de la FICCT.",
+			"image": "",
+			"license": "GPLv3",
+			"status": "archived",
+			"website": "#",
+			"github": "#"
+		},
+		{
+			"title": "Minunux GNU/Linux",
+			"description": "Distribución liviana basada en MiniOS, creada para equipos de bajos recursos en el proyecto Desarrollo Web en Hogares.",
+			"image": "",
+			"license": "GPLv2",
+			"status": "archived",
+			"website": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
+			"github": "https://github.com/nlbol/minios-live"
+		},
+		{
+			"title": "Repositorio de código",
+			"description": "Repositorio GIT propio Self-Hosted con Forgejo.",
+			"image": "",
+			"license": "GPLv3+",
+			"status": "development",
+			"website": "git.nluagrm.org",
+			"github": "https://forgejo.org/"
+		},
+		{
+			"title": "Meet",
+			"description": "Plataforma de reuniones virtuales Self-Hosted.",
+			"image": "",
+			"license": "GPLv3",
+			"status": "development",
+			"website": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
+			"github": "https://github.com/minios-linux/minios-live"
+		},
+		{
+			"title": "Biblioteca Digital",
+			"description": "La Biblioteca - Núcleo Linux UAGRM es un proyecto del Núcleo Linux de la Universidad Autónoma Gabriel René Morelos (UAGRM) dedicado a proporcionar recursos educativos gratuitos sobre informática, GNU/Linux y Software Libre..",
+			"image": "",
+			"license": "GPLv3",
+			"status": "active",
+			"website": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
+			"github": "https://github.com/minios-linux/minios-live"
+		},
+		{
+			"title": "Wiki",
+			"description": "Plataforma para crear y compartir información de manera colaborativa.",
+			"image": "",
+			"license": "#",
+			"status": "development",
+			"website": "wiki.nluagrm.org",
+			"github": "https://nlbol/"
+		}
+	]
+}

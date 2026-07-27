@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import aboutData from "../../public/content/about.json";
+
+const { title, subtitle, description } = aboutData;
+---
+
+<Layout>
+	<section class="section">
+		<div class="content">
+			<h1>{title}</h1>
+			<p class="lead">{subtitle}</p>
+		</div>
+	</section>
+
+	<section class="section section-alt" id="acerca">
+		<div class="content">
+			{description.map((paragraph) => (
+				<p>{paragraph}</p>
+			))}
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.section {
+		padding: 4rem 2rem;
+	}
+
+	.section-alt {
+		background: var(--bg-alt);
+	}
+
+	.content {
+		max-width: var(--max-width);
+		margin: 0 auto;
+	}
+
+	h1 {
+		font-size: clamp(2rem, 4vw, 3rem);
+		text-align: center;
+	}
+
+	.lead {
+		text-align: center;
+		color: var(--text-muted);
+		max-width: 600px;
+		margin: 1rem auto 0;
+		font-size: 1.05rem;
+	}
+
+	.content p {
+		color: var(--text-muted);
+		max-width: 680px;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 1.05rem;
+		line-height: 1.8;
+	}
+
+	.content p + p {
+		margin-top: 1.5rem;
+	}
+</style>

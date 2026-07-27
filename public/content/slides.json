@@ -1,21 +1,21 @@
 [
 	{
-		"img": "/icon.jpg",
+		"img": "/nluagrm.png",
 		"title": "Nucleo Linux UAGRM",
 		"url": "https://nluagrm.org"
 	},
 	{
-		"img": "/facebook.svg",
+		"img": "/facebook.png",
 		"title": "Facebook",
 		"url": "https://www.facebook.com/groups/nucleolinux"
 	},
 	{
-		"img": "/youtube.svg",
+		"img": "/youtube.png",
 		"title": "YouTube",
 		"url": "https://www.youtube.com/@nucleolinuxuagrm9768"
 	},
 	{
-		"img": "/telegram.svg",
+		"img": "/telegram.png",
 		"title": "Telegram",
 		"url": "https://t.me/nucleolinux_uagrm"
 	}

@@ -1,7 +1,32 @@
 ---
+interface Slide {
+	title?: string;
+	description?: string;
+	image?: string;
+	img?: string;
+	url?: string;
+}
+
+interface Props {
+	data: Slide[];
+	id?: string;
+}
+
+const { data, id = "slider" } = Astro.props;
 ---
 
-<div class="slider" id="autoSlider"></div>
+<div class="slider" id={id}>
+	{data.map((s) => (
+		<a href={s.url || '#'} class="slide" target={s.url ? '_blank' : ''} rel="noopener">
+			<div class="slide-img">
+				<img src={s.image || s.img || ''} alt={s.title || ''} loading="lazy" />
+				<div class="slide-overlay">
+					<h3>{s.title}</h3>
+				</div>
+			</div>
+		</a>
+	))}
+</div>
 
 <style is:global>
 	.slider {
@@ -83,58 +108,23 @@
 		.slide {
 			flex: 0 0 45%;
 		}
-
-		.slide-overlay {
-			transform: translateY(100%);
-		}
-
-		.slide:hover .slide-overlay {
-			transform: translateY(0);
-		}
-	}
-
-	.slide-overlay {
-		transform: translateY(0);
 	}
 </style>
 
 <script>
-	document.addEventListener('DOMContentLoaded', async () => {
-		const slider = document.getElementById('autoSlider');
-		if (!slider) return;
+	function initSlider(slider: HTMLElement) {
+		if (slider.dataset.init) return;
+		slider.dataset.init = "1";
 
-		let slides;
-		try {
-			const res = await fetch('/content/slides.json');
-			slides = await res.json();
-		} catch {
-			return;
-		}
-		if (!slides || slides.length === 0) return;
-
-		slider.innerHTML = slides
-			.map(
-				(s) =>
-					`<a href="${s.url || '#'}" class="slide" target="${s.url ? '_blank' : ''}" rel="noopener">
-						<div class="slide-img">
-							<img src="${s.img}" alt="${s.title}" loading="lazy" />
-							<div class="slide-overlay">
-								<h3>${s.title}</h3>
-							</div>
-						</div>
-					</a>`,
-			)
-			.join('');
-
-		const slideEls = slider.querySelectorAll('.slide');
-		if (slideEls.length === 0) return;
+		const slides = slider.querySelectorAll('.slide');
+		if (slides.length === 0) return;
 
 		let currentIndex = 0;
-		let interval;
+		let interval: ReturnType<typeof setInterval>;
 
 		function nextSlide() {
-			currentIndex = (currentIndex + 1) % slideEls.length;
-			const slideWidth = slideEls[0].offsetWidth + 16;
+			currentIndex = (currentIndex + 1) % slides.length;
+			const slideWidth = (slides[0] as HTMLElement).offsetWidth + 16;
 			slider.scrollTo({ left: slideWidth * currentIndex, behavior: 'smooth' });
 		}
 
@@ -143,8 +133,25 @@
 			interval = setInterval(nextSlide, 3000);
 		}
 
+		function updateIndex() {
+			const slideWidth = (slides[0] as HTMLElement).offsetWidth + 16;
+			currentIndex = Math.round(slider.scrollLeft / slideWidth) % slides.length;
+		}
+
+		slider.addEventListener('wheel', (e) => {
+			const { deltaY } = e;
+			if (Math.abs(deltaY) < 1) return;
+			e.preventDefault();
+			slider.scrollBy({ left: deltaY, behavior: 'auto' });
+			updateIndex();
+		}, { passive: false });
+
 		startAuto();
 		slider.addEventListener('mouseenter', () => clearInterval(interval));
 		slider.addEventListener('mouseleave', startAuto);
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		document.querySelectorAll<HTMLElement>('.slider').forEach(initSlider);
 	});
 </script>
