@@ -2,12 +2,12 @@
 	"projects": [
 		{
 			"title": "FICCT-OS",
-			"description": "Distribución GNU/Linux con entornos de desarrollo preinstalados para los primeros semestres de la FICCT.",
+			"description": "Distribución GNU/Linux con entornos de desarrollo preinstalados para estudiantes de los primeros semestres de la FICCT.",
 			"image": "",
 			"license": "GPLv3",
 			"status": "archived",
-			"website": "#",
-			"github": "#"
+			"website": "",
+			"github": ""
 		},
 		{
 			"title": "Minunux GNU/Linux",
@@ -15,7 +15,7 @@
 			"image": "",
 			"license": "GPLv2",
 			"status": "archived",
-			"website": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
+			"website": "https://wiki.nluagrm.org",
 			"github": "https://github.com/nlbol/minios-live"
 		},
 		{
@@ -29,12 +29,12 @@
 		},
 		{
 			"title": "Meet",
-			"description": "Plataforma de reuniones virtuales Self-Hosted.",
+			"description": "Implementación de plataforma de reuniones virtuales Self-Hosted.",
 			"image": "",
 			"license": "GPLv3",
 			"status": "active",
-			"website": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
-			"github": "https://github.com/minios-linux/minios-live"
+			"website": "https://meet.nluagrm.org",
+			"github": "https://github.com/jitsi/jitsi-meet"
 		},
 		{
 			"title": "Biblioteca Digital",
@@ -49,7 +49,7 @@
 			"title": "Wiki",
 			"description": "Plataforma para crear y compartir información de manera colaborativa.",
 			"image": "",
-			"license": "#",
+			"license": "",
 			"status": "development",
 			"website": "wiki.nluagrm.org",
 			"github": "https://nlbol/"
