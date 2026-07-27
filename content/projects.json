@@ -1,0 +1,58 @@
+{
+	"projects": [
+		{
+			"title": "FICCT-OS",
+			"description": "Distribución GNU/Linux con entornos de desarrollo preinstalados para estudiantes de los primeros semestres de la FICCT.",
+			"image": "",
+			"license": "GPLv3",
+			"status": "archived",
+			"website": "",
+			"github": ""
+		},
+		{
+			"title": "Minunux GNU/Linux",
+			"description": "Distribución liviana basada en MiniOS, creada para equipos de bajos recursos en el proyecto Desarrollo Web en Hogares.",
+			"image": "",
+			"license": "GPLv2",
+			"status": "archived",
+			"website": "https://wiki.nluagrm.org",
+			"github": "https://github.com/nlbol/minios-live"
+		},
+		{
+			"title": "Repositorio de código",
+			"description": "Repositorio GIT propio Self-Hosted con Forgejo.",
+			"image": "",
+			"license": "GPLv3+",
+			"status": "development",
+			"website": "git.nluagrm.org",
+			"github": "https://forgejo.org/"
+		},
+		{
+			"title": "Meet",
+			"description": "Implementación de plataforma de reuniones virtuales Self-Hosted.",
+			"image": "",
+			"license": "GPLv3",
+			"status": "active",
+			"website": "https://meet.nluagrm.org",
+			"github": "https://github.com/jitsi/jitsi-meet"
+		},
+		{
+			"title": "Biblioteca Digital",
+			"description": "La Biblioteca - Núcleo Linux UAGRM es un proyecto del Núcleo Linux de la Universidad Autónoma Gabriel René Morelos (UAGRM) dedicado a proporcionar recursos educativos gratuitos sobre informática, GNU/Linux y Software Libre..",
+			"image": "",
+			"license": "GPLv3",
+			"status": "active",
+			"website": "https://biblioteca.nluagrm.org",
+			"github": "https://github.com/nlbol/biblioteca"
+		},
+		{
+			"title": "Wiki",
+			"description": "Plataforma para crear y compartir información de manera colaborativa.",
+			"image": "",
+			"license": "",
+			"status": "development",
+			"website": "wiki.nluagrm.org",
+			"github": "https://nlbol/"
+		}
+	]
+}
