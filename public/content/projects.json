@@ -32,7 +32,7 @@
 			"description": "Plataforma de reuniones virtuales Self-Hosted.",
 			"image": "",
 			"license": "GPLv3",
-			"status": "development",
+			"status": "active",
 			"website": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
 			"github": "https://github.com/minios-linux/minios-live"
 		},
@@ -42,8 +42,8 @@
 			"image": "",
 			"license": "GPLv3",
 			"status": "active",
-			"website": "https://wiki.nluagrm.org/doku.php?id=start:proyectos:minunux_gnu_linux",
-			"github": "https://github.com/minios-linux/minios-live"
+			"website": "https://biblioteca.nluagrm.org",
+			"github": "https://github.com/nlbol/biblioteca"
 		},
 		{
 			"title": "Wiki",
