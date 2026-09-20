@@ -18,6 +18,14 @@ const statusMap: Record<string, { label: string; icon: string }> = {
 };
 
 const st = statusMap[status || ""] || statusMap.development;
+
+const normalizeUrl = (url?: string) => {
+	if (!url) return url;
+	if (/^https?:\/\//i.test(url)) return url;
+	return `https://${url}`;
+};
+
+const websiteUrl = normalizeUrl(website);
 ---
 
 <div class="project-card">
@@ -33,8 +41,8 @@ const st = statusMap[status || ""] || statusMap.development;
 		<span class={`status-badge ${status || "development"}`}>{st.icon} {st.label}</span>
 	</div>
 	<div class="card-actions">
-		{website && (
-			<a href={website} class="icon-btn" target="_blank" rel="noopener" aria-label="Sitio web">
+		{websiteUrl && (
+			<a href={websiteUrl} class="icon-btn" target="_blank" rel="noopener" aria-label="Sitio web">
 				<i data-lucide="globe" class="icon-sm"></i>
 			</a>
 		)}
