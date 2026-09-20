@@ -23,7 +23,7 @@
 			"description": "Repositorio GIT propio Self-Hosted con Forgejo.",
 			"image": "",
 			"license": "GPLv3+",
-			"status": "development",
+			"status": "active",
 			"website": "git.nluagrm.org",
 			"github": "https://forgejo.org/"
 		},
