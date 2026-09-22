@@ -1,0 +1,22 @@
+{
+  "slides": [
+    {
+      "title": "Biblioteca",
+      "description": "Biblioteca Digital",
+      "image": "/biblioteca.png",
+      "url": "https://biblioteca.nluagrm.org"
+    },
+    {
+      "title": "cloud",
+      "description": "Nube privada para formularios/datos esenciales.",
+      "image": "/nextcloud.png",
+      "url": "https://cloud.nluagrm.org"
+    },
+    {
+      "title": "Meet",
+      "description": "Plataforma para reuniones virtuales.",
+      "image": "/jitsi-meet.png",
+      "url": "https://meet.nluagrm.org"
+    }
+  ]
+}

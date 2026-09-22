@@ -1,0 +1,22 @@
+{
+  "slides": [
+    {
+      "title": "Facebook",
+      "description": "Seguinos en Facebook.",
+      "image": "/facebook.png",
+      "url": "https://www.facebook.com/groups/nucleolinux"
+    },
+    {
+      "title": "YouTube",
+      "description": "Canal de YouTube con charlas y tutoriales.",
+      "image": "/youtube.png",
+      "url": "https://www.youtube.com/@nucleolinuxuagrm9768"
+    },
+    {
+      "title": "Telegram",
+      "description": "Canal oficial de Telegram.",
+      "image": "/telegram.png",
+      "url": "https://t.me/nucleolinux_uagrm"
+    }
+  ]
+}
