@@ -13,6 +13,12 @@
       "url": "https://cloud.nluagrm.org"
     },
     {
+      "title": "git",
+      "description": "Repositorio Git - Nucleo Linux UAGRM",
+      "image": "/forgejo.png",
+      "url": "https://git.nluagrm.org"
+    },
+    {
       "title": "Meet",
       "description": "Plataforma para reuniones virtuales.",
       "image": "/jitsi-meet.png",
