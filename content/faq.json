@@ -1,0 +1,28 @@
+{
+  "faq": [
+    {
+      "question": "¿Qué es Núcleo Linux UAGRM?",
+      "answer": "Es una comunidad estudiantil de la Universidad Autónoma Gabriel René Moreno dedicada a la promoción, investigación y desarrollo de tecnologías de software libre y código abierto."
+    },
+    {
+      "question": "¿Cómo puedo unirme a la comunidad?",
+      "answer": "Podés escribirnos a fershouno@proton.me para coordinar tu incorporación. También podés asistir a nuestras actividades y eventos para conocernos."
+    },
+    {
+      "question": "¿Qué actividades realizan?",
+      "answer": "Organizamos talleres, charlas, instalaciones masivas y proyectos de software libre. También participamos en eventos de tecnología a nivel regional y nacional."
+    },
+    {
+      "question": "¿Necesito ser estudiante de la UAGRM para participar?",
+      "answer": "Nuestra comunidad está enfocada principalmente en estudiantes de la UAGRM, pero cualquier persona interesada en el software libre es bienvenida a participar en nuestras actividades abiertas."
+    },
+    {
+      "question": "¿Qué es el software libre?",
+      "answer": "El software libre es aquel que respeta la libertad de los usuarios, permitiendo ejecutar, copiar, distribuir, estudiar, cambiar y mejorar el software. Ejemplos populares incluyen Linux, GNU y Firefox."
+    },
+    {
+      "question": "¿Puedo colaborar en los proyectos de la comunidad?",
+      "answer": "Sí, todos nuestros proyectos son de código abierto y cualquiera puede contribuir. Visitá la sección de Proyectos para conocer nuestras iniciativas activas."
+    }
+  ]
+}
